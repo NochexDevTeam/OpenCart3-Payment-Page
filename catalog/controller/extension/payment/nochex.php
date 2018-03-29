@@ -64,8 +64,8 @@ class ControllerExtensionPaymentNochex extends Controller {
 		}
 		
 		if($this->config->get('payment_nochex_postage') == 1){
-		$data['postage'] = $this->currency->format($this->session->data['shipping_method']['cost'], $this->currency->getCode(), false, false);
-		$data['amount']  = $this->currency->format($order_info['total'], $currency, FALSE, FALSE) - $this->currency->format($this->session->data['shipping_method']['cost'], $this->currency->getCode(), false, false);
+		$data['postage'] = $this->currency->format($this->session->data['shipping_method']['cost'], $order_info['currency_code'], false, false);
+		$data['amount']  = $this->currency->format($order_info['total'], $currency, FALSE, FALSE) - $this->currency->format($this->session->data['shipping_method']['cost'], $order_info['currency_code'], false, false);
 		}else{
 		$data['postage'] =  "";
 		$data['amount'] = $this->currency->format($order_info['total'], 'GBP', false, false);
@@ -185,23 +185,22 @@ class ControllerExtensionPaymentNochex extends Controller {
 			
 		if($this->request->post['optional_1'] == "Enabled"){
 
+		$url = "https://secure.nochex.com/callback/callback.aspx";
+		$ch = curl_init ();
+		curl_setopt ($ch, CURLOPT_URL, $url);
+		curl_setopt ($ch, CURLOPT_POST, true);
+		curl_setopt ($ch, CURLOPT_POSTFIELDS, $request);
+		curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt ($ch, CURLOPT_SSL_VERIFYHOST, false);
+		curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		$response = curl_exec($ch);
+		curl_close($ch);
 
-$url = "https://secure.nochex.com/callback/callback.aspx";
-$ch = curl_init ();
-curl_setopt ($ch, CURLOPT_URL, $url);
-curl_setopt ($ch, CURLOPT_POST, true);
-curl_setopt ($ch, CURLOPT_POSTFIELDS, $request);
-curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt ($ch, CURLOPT_SSL_VERIFYHOST, false);
-curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 0);
-$response = curl_exec($ch);
-curl_close($ch);
-
-if($_POST["transaction_status"] == "100"){
-$testStatus = "Test";
-}else{
-$testStatus = "Live";
-}
+		if($_POST["transaction_status"] == "100"){
+		$testStatus = "Test";
+		}else{
+		$testStatus = "Live";
+		}
 		
 		if ($response=="AUTHORISED") {
 			/*$Msg = "Callback was " . $response. ", and this was a " . $testStatus . " transaction. <br/> The transaction id for this payment is: ".$_POST["transaction_id"];
@@ -234,23 +233,23 @@ $testStatus = "Live";
 
 }else{
 	
-$url = "https://www.nochex.com/apcnet/apc.aspx";
+		$url = "https://www.nochex.com/apcnet/apc.aspx";
 
-// Curl code to post variables back
-$ch = curl_init(); // Initialise the curl tranfer
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_VERBOSE, true);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, trim($request, '&')); // Set POST fields
-curl_setopt($ch, CURLOPT_HTTPHEADER, "Host: www.nochex.com");
-curl_setopt($ch, CURLOPT_POSTFIELDSIZE, 0); 
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-curl_setopt($ch, CURLOPT_TIMEOUT, 60); // set connection time out variable - 60 seconds	
-//curl_setopt ($ch, CURLOPT_SSLVERSION, 6); // set openSSL version variable to CURL_SSLVERSION_TLSv1
-$output = curl_exec($ch); // Post back
-curl_close($ch);
+		// Curl code to post variables back
+		$ch = curl_init(); // Initialise the curl tranfer
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_VERBOSE, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, trim($request, '&')); // Set POST fields
+		curl_setopt($ch, CURLOPT_HTTPHEADER, "Host: www.nochex.com");
+		curl_setopt($ch, CURLOPT_POSTFIELDSIZE, 0); 
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 60); // set connection time out variable - 60 seconds	
+		//curl_setopt ($ch, CURLOPT_SSLVERSION, 6); // set openSSL version variable to CURL_SSLVERSION_TLSv1
+		$output = curl_exec($ch); // Post back
+		curl_close($ch);
 
 		if (strcmp($output, 'AUTHORISED') == 0) {
 		$Msg = "APC was " . $output. ", and this was a " . $_POST['status'] . " transaction.";
