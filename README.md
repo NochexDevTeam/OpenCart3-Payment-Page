@@ -15,7 +15,7 @@ Nochex is the UK's leading independent payment service for start-up, small and m
 Key Features 
 ============
 
-Quick and seamless integration into the WooCommerce checkout page.
+Quick and seamless integration into the Opencart checkout page.
 Accept all major credit cards.
 Prevent Fraud - use 3D Secure, 3D Secure is a standard developed by the card schemes - Visa and MasterCard - to improve the security of Internet payments.
 Risk Management - Our gateway is PCI Level 1 compliant.
