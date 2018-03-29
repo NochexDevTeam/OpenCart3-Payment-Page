@@ -15,13 +15,13 @@ Nochex is the UK's leading independent payment service for start-up, small and m
 Key Features 
 ============
 
-Quick and seamless integration into the Opencart checkout page.
-Accept all major credit cards.
-Prevent Fraud - use 3D Secure, 3D Secure is a standard developed by the card schemes - Visa and MasterCard - to improve the security of Internet payments.
-Risk Management - Our gateway is PCI Level 1 compliant.
-Automatically Update Orders - Use APC (Automatic Payment Confirmation) to update orders when they have been paid for.
-Mobile Payments - Mobile friendly interface for customers.
-Customers are sent to the secure Nochex payments pages to make a payment.
+* Quick and seamless integration into the Opencart checkout page.
+* Accept all major credit cards.
+* Prevent Fraud - use 3D Secure, 3D Secure is a standard developed by the card schemes - Visa and MasterCard - to improve the security of Internet payments.
+* Risk Management - Our gateway is PCI Level 1 compliant.
+* Automatically Update Orders - Use APC (Automatic Payment Confirmation) to update orders when they have been paid for.
+* Mobile Payments - Mobile friendly interface for customers.
+* Customers are sent to the secure Nochex payments pages to make a payment.
 
 Installation
 ============
@@ -37,20 +37,20 @@ Changelog
 
 1.1
 ====
-Tested to make sure the extension works with TLS 1.2
-Bug fixes highlighted in the Open Cart thread <a href="https://github.com/opencart/opencart/issues/6500">here</a>
+* Tested to make sure the extension works with TLS 1.2
+* Bug fixes highlighted in the Open Cart thread <a href="https://github.com/opencart/opencart/issues/6500">here</a>
 
-- Currency References
+** Currency References
 
 1
 ====
-Upgraded extension from 2.x as some of the files no longer worked
+* Upgraded extension from 2.x as some of the files no longer worked
 
-Features 
+* Features 
 
-Callback - This works similarly to the existing APC functionality. To use this you will need to contact your Account Manager.
-Test Mode - Allows you to test the extension and make sure everything is working correctly. 
-Product Details - Show product information in a structured format on your payment page
-Debug - Record information in relation to the extension, which can be used for detecting problems.
-Postage - Show Postage separately to the amount on your payment page
-Hide Billing Details - Hide billing details on your payment page so customers don't have to re-type their details
+** Callback - This works similarly to the existing APC functionality. To use this you will need to contact your Account Manager.
+** Test Mode - Allows you to test the extension and make sure everything is working correctly. 
+** Product Details - Show product information in a structured format on your payment page
+** Debug - Record information in relation to the extension, which can be used for detecting problems.
+** Postage - Show Postage separately to the amount on your payment page
+** Hide Billing Details - Hide billing details on your payment page so customers don't have to re-type their details
