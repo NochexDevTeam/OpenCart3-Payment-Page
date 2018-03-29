@@ -40,7 +40,7 @@ Changelog
 * Tested to make sure the extension works with TLS 1.2
 * Bug fixes highlighted in the Open Cart thread <a href="https://github.com/opencart/opencart/issues/6500">here</a>
 
-** Currency References
+* * Currency References
 
 1
 ====
@@ -48,9 +48,9 @@ Changelog
 
 * Features 
 
-** Callback - This works similarly to the existing APC functionality. To use this you will need to contact your Account Manager.
-** Test Mode - Allows you to test the extension and make sure everything is working correctly. 
-** Product Details - Show product information in a structured format on your payment page
-** Debug - Record information in relation to the extension, which can be used for detecting problems.
-** Postage - Show Postage separately to the amount on your payment page
-** Hide Billing Details - Hide billing details on your payment page so customers don't have to re-type their details
+* * Callback - This works similarly to the existing APC functionality. To use this you will need to contact your Account Manager.
+* * Test Mode - Allows you to test the extension and make sure everything is working correctly. 
+* * Product Details - Show product information in a structured format on your payment page
+* * Debug - Record information in relation to the extension, which can be used for detecting problems.
+* * Postage - Show Postage separately to the amount on your payment page
+* * Hide Billing Details - Hide billing details on your payment page so customers don't have to re-type their details
