@@ -28,6 +28,29 @@ Installation
 To Install and Setup the Nochex module please follow our integration guide, which can be found <a href="https://support.nochex.com/kb/faq.php?id=146">here</a> 
 
 Support
-=====================
+============
 Bug fixes and feature patches may be submitted using github pull requests, and bug reports or feature requests as github issues.
 Visit our Knowledgebase for support: https://support.nochex.com/
+
+Changelog
+============
+
+1.1
+====
+Tested to make sure the extension works with TLS 1.2
+Bug fixes highlighted in the Open Cart thread <a href="https://github.com/opencart/opencart/issues/6500">here</a>
+
+- Currency References
+
+1
+====
+Upgraded extension from 2.x as some of the files no longer worked
+
+Features 
+
+Callback - This works similarly to the existing APC functionality. To use this you will need to contact your Account Manager.
+Test Mode - Allows you to test the extension and make sure everything is working correctly. 
+Product Details - Show product information in a structured format on your payment page
+Debug - Record information in relation to the extension, which can be used for detecting problems.
+Postage - Show Postage separately to the amount on your payment page
+Hide Billing Details - Hide billing details on your payment page so customers don't have to re-type their details
