@@ -35,6 +35,11 @@ Visit our Knowledgebase for support: https://support.nochex.com/
 Changelog
 ============
 
+1.2
+====
+* Included extra debugging into APC / Callback
+* Bug fixes: Hide Billing Details, and Postage feature
+
 1.1
 ====
 * Tested to make sure the extension works with TLS 1.2
