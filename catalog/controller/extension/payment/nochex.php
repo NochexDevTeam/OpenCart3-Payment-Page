@@ -116,7 +116,9 @@ class ControllerExtensionPaymentNochex extends Controller {
 			$data['delivery_postcode'] = $order_info['payment_postcode'];
 		}
 		
-		$data['hide_billing_details'] = $this->config->get('payment_nochex_hide');
+		if($this->config->get('payment_nochex_hide') == 1){
+		$data['hide_billing_details'] = "true";		
+		}
 		$data['xmlcollection'] = $xmlCollection;
 		
 		 
@@ -151,6 +153,9 @@ class ControllerExtensionPaymentNochex extends Controller {
 	}
 
 	public function callback() {
+		
+		$logger = new Log('nochex.log');
+		
 		$this->load->language('extension/payment/nochex');
 
 		if (isset($this->request->get['method']) && $this->request->get['method'] == 'decline') {
@@ -226,6 +231,13 @@ class ControllerExtensionPaymentNochex extends Controller {
 			$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('config_order_status_id'), $Msg, false);
 		}
 
+		if($this->config->get('payment_nochex_debug')==1){
+		
+		$logger->write('Callback Response: '. $response);
+		$logger->write('Callback Message: '. $Msg);
+		$logger->write('Order ID: '. $_POST["order_id"]);
+
+		}
 		// Since it returned, the customer should see success.
 		// It's up to the store owner to manually verify payment.
 		$this->response->redirect($this->url->link('checkout/success', '', 'SSL'));
@@ -260,6 +272,13 @@ class ControllerExtensionPaymentNochex extends Controller {
 			$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('config_order_status_id'), $Msg, false);
 		}
 
+		if($this->config->get('payment_nochex_debug')==1){
+		
+		$logger->write('APC Response: '. $output);
+		$logger->write('APC Message: '. $Msg);
+		$logger->write('Order ID: '. $_POST["order_id"]);
+
+		}
 		// Since it returned, the customer should see success.
 		// It's up to the store owner to manually verify payment.
 		$this->response->redirect($this->url->link('checkout/success', '', 'SSL'));
