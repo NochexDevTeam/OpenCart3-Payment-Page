@@ -33,7 +33,8 @@
   <input type="hidden" name="email_address" value="{{ email_address }}" />
   <input type="hidden" name="optional_1" value="{{ optional_1 }}" />
   
-{% if hide_billing_details == 1 %}
+{% if hide_billing_details == "true" %}
+  <input type="hidden" name="hide_billing_details" value="true" />
   <p style="text-align:right; font-weight:bold; color:red;">Please check your Billing Details match the Details on your card that you are going to use.</p>
 {% endif %}
 
