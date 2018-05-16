@@ -44,8 +44,7 @@ Changelog
 ====
 * Tested to make sure the extension works with TLS 1.2
 * Bug fixes highlighted in the Open Cart thread <a href="https://github.com/opencart/opencart/issues/6500">here</a>
-
-* * Currency References
+* Currency References
 
 1
 ====
