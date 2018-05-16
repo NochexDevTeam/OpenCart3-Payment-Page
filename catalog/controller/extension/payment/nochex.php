@@ -65,7 +65,7 @@ class ControllerExtensionPaymentNochex extends Controller {
 		
 		if($this->config->get('payment_nochex_postage') == 1){
 		$data['postage'] = $this->currency->format($this->session->data['shipping_method']['cost'], $order_info['currency_code'], false, false);
-		$data['amount']  = $this->currency->format($order_info['total'], $currency, FALSE, FALSE) - $this->currency->format($this->session->data['shipping_method']['cost'], $order_info['currency_code'], false, false);
+		$data['amount']  = $this->currency->format($order_info['total'], $order_info['currency_code'], FALSE, FALSE) - $this->currency->format($this->session->data['shipping_method']['cost'], $order_info['currency_code'], false, false);
 		}else{
 		$data['postage'] =  "";
 		$data['amount'] = $this->currency->format($order_info['total'], $order_info['currency_code'], false, false);
