@@ -188,7 +188,7 @@ class ControllerExtensionPaymentNochex extends Controller {
 		}
 
 			
-		if($this->request->post['optional_1'] == "Enabled"){
+		if(isset($this->request->post['optional_1']) == "Enabled"){
 
 		$url = "https://secure.nochex.com/callback/callback.aspx";
 		$ch = curl_init ();
@@ -255,8 +255,7 @@ class ControllerExtensionPaymentNochex extends Controller {
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($ch, CURLOPT_POST, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, trim($request, '&')); // Set POST fields
-		curl_setopt($ch, CURLOPT_HTTPHEADER, "Host: www.nochex.com");
-		curl_setopt($ch, CURLOPT_POSTFIELDSIZE, 0); 
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Host: www.nochex.com"));
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 60); // set connection time out variable - 60 seconds	
 		//curl_setopt ($ch, CURLOPT_SSLVERSION, 6); // set openSSL version variable to CURL_SSLVERSION_TLSv1
