@@ -1,7 +1,7 @@
-## Nochex Module for Open Cart
-Accept all major cards directly on your OpenCart Site using Nochex payment gateway.
+## Nochex Module for Mijoshop
+Accept all major cards directly on your Mijoshop Site using Nochex payment gateway.
 
-OpenCart Version Tested up to 3.0.3.1
+Mijoshop uses OpenCart Version Tested up to 3.x
 
 ### Description 
 Nochex Online Payment Services = Website: http://www.nochex.com
@@ -26,28 +26,12 @@ Visit our Knowledgebase for support: https://support.nochex.com/
 
 ### Changelog
 
-#### 1.3
-
-* Bug fixed - fix a couple of minor errors produced in the APC and Callback functions.
-
-#### 1.2
-
-* Included extra debugging into APC / Callback
-* Bug fixes: Hide Billing Details, and Postage feature
-
-#### 1.1
-
-* Tested to make sure the extension works with TLS 1.2
-* Bug fixes highlighted in the Open Cart thread <a href="https://github.com/opencart/opencart/issues/6500">here</a>
-* Currency References
-
 #### 1
 
-* Upgraded extension from 2.x as some of the files no longer worked
+* Updated extension which uses the same functionality / module files as the Nochex Module for Open Cart (1.3)
 
 ### Features 
 
-* Callback - This works similarly to the existing APC functionality. To use this you will need to contact your Account Manager.
 * Test Mode - Allows you to test the extension and make sure everything is working correctly. 
 * Product Details - Show product information in a structured format on your payment page
 * Debug - Record information in relation to the extension, which can be used for detecting problems.
