@@ -37,7 +37,7 @@ class ControllerExtensionPaymentNochex extends Controller {
 		
 		foreach ($products as $product) {
 		
-			$xmlCollection .= "<item><id>".$product['product_id']."</id><name>".$product['name']."</name><description>".$product['model']."</description><quantity>".$product['quantity']."</quantity><price>" . $product['price'] . "</price></item>";
+			$xmlCollection .= "<item><id>".$product['product_id']."</id><name>".preg_replace("/[^A-Za-z0-9  ]/", "", $product['name'])."</name><description>".preg_replace("/[^A-Za-z0-9  ]/", "", $product['model'])."</description><quantity>".$product['quantity']."</quantity><price>" . $product['price'] . "</price></item>";
 		}
 		
 		$xmlCollection .= "</items>";
@@ -50,7 +50,7 @@ class ControllerExtensionPaymentNochex extends Controller {
 		$description = "Product Details: ";
 		
 		foreach ($products as $product) {
-			$description .= " Product ID: ".$product['product_id'].", Product Name: ".$product['name'].", Product Description: ".$product['model'].", Product Quantity: ".$product['quantity'].", Product Price: &pound;" . $product['price'] . "   ";
+			$description .= " Product ID: ".$product['product_id'].", Product Name: ".preg_replace("/[^A-Za-z0-9  ]/", "", $product['name']).", Product Description: ".preg_replace("/[^A-Za-z0-9  ]/", "", $product['model']).", Product Quantity: ".$product['quantity'].", Product Price: &pound;" . $product['price'] . "   ";
 		}
 		
 		$description .= ".";
@@ -83,36 +83,36 @@ class ControllerExtensionPaymentNochex extends Controller {
 		$data['description'] = $description;
 		
 
-		$data['billing_fullname'] = $order_info['payment_firstname'] . ' ' . $order_info['payment_lastname'];
+		$data['billing_fullname'] = preg_replace("/[^A-Za-z  ]/", "", $order_info['payment_firstname']) . ' ' . preg_replace("/[^A-Za-z  ]/", "", $order_info['payment_lastname']);
 
-		if ($order_info['payment_address_2']) {
-			$data['billing_address']  = $order_info['payment_address_1'] . "\r\n" . $order_info['payment_address_2'];
+		if (isset($order_info['payment_address_2'])) {
+			$data['billing_address']  = preg_replace("/[^A-Za-z0-9  ]/", "", $order_info['payment_address_1']) . "\r\n" . preg_replace("/[^A-Za-z0-9  ]/", "", $order_info['payment_address_2']);
 		} else {
-			$data['billing_address']  = $order_info['payment_address_1'];
+			$data['billing_address']  = preg_replace("/[^A-Za-z0-9  ]/", "", $order_info['payment_address_1']);
 		}
 		
-		$data['billing_city'] = $order_info['payment_city'];
+		$data['billing_city'] = preg_replace("/[^A-Za-z ]/", "", $order_info['payment_city']);
 		$data['billing_postcode'] = $order_info['payment_postcode'];
 
 		if ($this->cart->hasShipping()) {
-			$data['delivery_fullname'] = $order_info['shipping_firstname'] . ' ' . $order_info['shipping_lastname'];
+			$data['delivery_fullname'] = preg_replace("/[^A-Za-z ]/", "", $order_info['shipping_firstname']) . ' ' . preg_replace("/[^A-Za-z  ]/", "", $order_info['shipping_lastname']);
 
-			if ($order_info['shipping_address_2']) {
-				$data['delivery_address'] = $order_info['shipping_address_1'] . "\r\n" . $order_info['shipping_address_2'];
+			if (isset($order_info['shipping_address_2'])) {
+				$data['delivery_address'] = preg_replace("/[^A-Za-z0-9  ]/", "", $order_info['shipping_address_1']) . "\r\n" . preg_replace("/[^A-Za-z0-9  ]/", "", $order_info['shipping_address_2']);
 			} else {
-				$data['delivery_address'] = $order_info['shipping_address_1'];
+				$data['delivery_address'] = preg_replace("/[^A-Za-z0-9  ]/", "", $order_info['shipping_address_1']);
 			}
-			$data['delivery_city'] = $order_info['shipping_city'];
+			$data['delivery_city'] = preg_replace("/[^A-Za-z ]/", "", $order_info['shipping_city']);
 			$data['delivery_postcode'] = $order_info['shipping_postcode'];
 		} else {
-			$data['delivery_fullname'] = $order_info['payment_firstname'] . ' ' . $order_info['payment_lastname'];
+			$data['delivery_fullname'] = preg_replace("/[^A-Za-z ]/", "", $order_info['payment_firstname']) . ' ' . preg_replace("/[^A-Za-z0-9  ]/", "", $order_info['payment_lastname']);
 
-			if ($order_info['payment_address_2']) {
-				$data['delivery_address'] = $order_info['payment_address_1'] . "\r\n" . $order_info['payment_address_2'];
+			if (isset($order_info['payment_address_2'])) {
+				$data['delivery_address'] = preg_replace("/[^A-Za-z0-9 ]/", "", $order_info['payment_address_1']) . "\r\n" . preg_replace("/[^A-Za-z0-9 ]/", "", $order_info['payment_address_2']);
 			} else {
-				$data['delivery_address'] = $order_info['shipping_address_1'];
+				$data['delivery_address'] = preg_replace("/[^A-Za-z0-9 ]/", "", $order_info['shipping_address_1']);
 			}
-			$data['delivery_city'] = $order_info['payment_city'];
+			$data['delivery_city'] = preg_replace("/[^A-Za-z ]/", "", $order_info['payment_city']);
 			$data['delivery_postcode'] = $order_info['payment_postcode'];
 		}
 		
@@ -258,7 +258,7 @@ class ControllerExtensionPaymentNochex extends Controller {
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Host: www.nochex.com"));
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 60); // set connection time out variable - 60 seconds	
-		//curl_setopt ($ch, CURLOPT_SSLVERSION, 6); // set openSSL version variable to CURL_SSLVERSION_TLSv1
+		//curl_setopt ($ch, CURLOPT_SSLVERSION, 6); // set openSSL version variable to CURL_SSLVERSION_TLSv1_2
 		$output = curl_exec($ch); // Post back
 		curl_close($ch);
 
