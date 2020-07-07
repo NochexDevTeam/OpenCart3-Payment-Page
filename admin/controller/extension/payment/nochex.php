@@ -122,13 +122,7 @@ class ControllerExtensionPaymentNOCHEX extends Controller {
 		} else { 
 			$data['payment_nochex_test'] = $this->config->get('payment_nochex_test');
 		}
-		
-		if (isset($this->request->post['payment_nochex_callback'])) { 
-			$data['payment_nochex_callback'] = $this->request->post['payment_nochex_callback'];
-		} else {
-			$data['payment_nochex_callback'] = $this->config->get('payment_nochex_callback'); 
-		}
-		
+				
 		if (isset($this->request->post['payment_nochex_xmlcollection'])) { 
 			$data['payment_nochex_xmlcollection'] = $this->request->post['payment_nochex_xmlcollection'];
 		} else { 
