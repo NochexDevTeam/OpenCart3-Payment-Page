@@ -1,7 +1,7 @@
 ## Nochex Module for Open Cart
 Accept all major cards directly on your OpenCart Site using Nochex payment gateway.
 
-OpenCart Version Tested up to 3.0.3.2
+OpenCart Version Tested up to 3.0.3.3
 
 ### Description 
 Nochex Online Payment Services = Website: http://www.nochex.com
