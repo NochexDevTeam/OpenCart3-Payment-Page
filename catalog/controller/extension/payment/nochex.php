@@ -200,8 +200,6 @@ class ControllerExtensionPaymentNochex extends Controller {
 		}
 		
 		if ($response=="AUTHORISED") {
-			/*$Msg = "Callback was " . $response. ", and this was a " . $testStatus . " transaction. <br/> The transaction id for this payment is: ".$_POST["transaction_id"];
-			$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('nochex_order_status_id'), $Msg, false);*/
 			
 			$Msg = "<ul style=\"list-style:none;\"><li>Callback: " . $response . "</li>";			
 			$Msg .= "<li>Transaction Status: " . $testStatus . "</li>";			
