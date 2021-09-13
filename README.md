@@ -26,6 +26,11 @@ Visit our Knowledgebase for support: https://support.nochex.com/
 
 ### Changelog
 
+#### 1.5
+
+- Update APC / Callback to check ordered amount and paid amount,
+- Fixed broken image in admin section
+
 #### 1.4
 
 * Included extra validation on fields
