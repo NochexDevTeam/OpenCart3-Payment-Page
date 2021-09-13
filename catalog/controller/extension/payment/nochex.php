@@ -171,6 +171,17 @@ class ControllerExtensionPaymentNochex extends Controller {
 
 			$this->response->redirect($this->url->link('checkout/cart'));
 		}
+				
+		$logger->write('Trans Amount: '. $this->currency->format($order_info['total'], $order_info['currency_code'], FALSE, FALSE) ."<>". $this->request->post['amount']);
+		
+		if($this->currency->format($order_info['total'], $order_info['currency_code'], FALSE, FALSE) != $this->request->post['amount']) {
+			$this->session->data['error'] = $this->language->get('error_no_order');
+			
+			$msg = "Total Paid does not match the order total! Order Total:" . $this->currency->format($order_info['total'], $order_info['currency_code'], FALSE, FALSE) . " - Paid Total: " . $this->request->post['amount'];
+			$this->model_checkout_order->addOrderHistory($order_id, 10, $msg, false);
+
+			$this->response->redirect($this->url->link('checkout/cart'));
+		}
 
 		// Fraud Verification Step.
 		$request = '';
