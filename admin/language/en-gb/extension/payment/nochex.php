@@ -6,7 +6,7 @@ $_['heading_title']					= 'NOCHEX';
 $_['text_payment']					= 'Payment';
 $_['text_success']					= 'Success: You have modified NOCHEX account details!';
 $_['text_edit']             = 'Edit NOCHEX';
-$_['text_nochex']					= '<img src="image/nochexcards.png" alt="NOCHEX" title="NOCHEX" style="border: 1px solid #EEEEEE;" />';
+$_['text_nochex']					= '<img src="../image/nochexcards.png" alt="NOCHEX" title="NOCHEX" style="border: 1px solid #EEEEEE;" />';
 $_['text_seller']					= 'Seller / Personal Account';
 $_['text_merchant']					= 'Merchant Account';
 
