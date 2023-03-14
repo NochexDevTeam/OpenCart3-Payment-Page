@@ -210,7 +210,7 @@ class ControllerExtensionPaymentNochex extends Controller {
 		$testStatus = "Live";
 		}
 		
-		if ($response=="AUTHORISED") {
+		if (str_contains($output, 'AUTHORISED')) {
 			
 			$Msg = "<ul style=\"list-style:none;\"><li>Callback: " . $response . "</li>";			
 			$Msg .= "<li>Transaction Status: " . $testStatus . "</li>";			
@@ -246,24 +246,19 @@ class ControllerExtensionPaymentNochex extends Controller {
 
 }else{
 	
-		$url = "https://www.nochex.com/apcnet/apc.aspx";
-
+		$url = "https://secure.nochex.com/apc/apc.aspx";
+		
 		// Curl code to post variables back
 		$ch = curl_init(); // Initialise the curl tranfer
 		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_VERBOSE, true);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($ch, CURLOPT_POST, true);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, trim($request, '&')); // Set POST fields
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Host: www.nochex.com"));
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 60); // set connection time out variable - 60 seconds	
-		//curl_setopt ($ch, CURLOPT_SSLVERSION, 6); // set openSSL version variable to CURL_SSLVERSION_TLSv1_2
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $request); // Set POST fields
+		curl_setopt ($ch, CURLOPT_SSLVERSION, 6); // set openSSL version variable to 3
 		$output = curl_exec($ch); // Post back
 		curl_close($ch);
 
-		if (strcmp($output, 'AUTHORISED') == 0) {
+		if (str_contains($output, 'AUTHORISED')) {
 		$Msg = "APC was " . $output. ", and this was a " . $_POST['status'] . " transaction.";
 			$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('payment_nochex_order_status_id'), $Msg, false);
 			
